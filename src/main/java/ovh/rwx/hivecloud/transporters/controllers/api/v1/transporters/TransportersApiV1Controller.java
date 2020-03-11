@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import ovh.rwx.hivecloud.transporters.repository.transporters.Transporter;
-import ovh.rwx.hivecloud.transporters.repository.transporters.TransportersRepository;
+import ovh.rwx.hivecloud.transporters.services.transporters.TransportersService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -25,10 +25,10 @@ import java.util.stream.Collectors;
 @ResponseBody
 @CrossOrigin("*")
 public class TransportersApiV1Controller {
-    private final TransportersRepository transportersRepository;
+    private final TransportersService transportersService;
 
-    public TransportersApiV1Controller(TransportersRepository transportersRepository) {
-        this.transportersRepository = transportersRepository;
+    public TransportersApiV1Controller(TransportersService transportersService) {
+        this.transportersService = transportersService;
     }
 
     @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,7 +42,7 @@ public class TransportersApiV1Controller {
             }
     )
     public Flux<Transporter> listTransporters() {
-        return this.transportersRepository.findAll();
+        return this.transportersService.listTransporters();
     }
 
     @GetMapping(value = "/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,7 +56,7 @@ public class TransportersApiV1Controller {
             }
     )
     public Mono<Transporter> getTransporter(@PathVariable("id") long transporterId) {
-        return this.transportersRepository.findById(transporterId);
+        return this.transportersService.getTransporter(transporterId);
     }
 
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -69,8 +69,8 @@ public class TransportersApiV1Controller {
                     @ApiResponse(responseCode = "500", description = "Server Error")
             }
     )
-    public Mono<Transporter> add(@Valid @RequestBody Transporter transporter) {
-        return this.transportersRepository.save(transporter);
+    public Mono<Transporter> addTransporter(@Valid @RequestBody Transporter transporter) {
+        return this.transportersService.addTransporter(transporter);
     }
 
     @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -86,12 +86,12 @@ public class TransportersApiV1Controller {
                     @ApiResponse(responseCode = "500", description = "Server Error")
             }
     )
-    public Mono<Transporter> update(@PathVariable("id") Long transporterId, @Valid @RequestBody Transporter transporter) {
+    public Mono<Transporter> updateTransporter(@PathVariable("id") Long transporterId, @Valid @RequestBody Transporter transporter) {
         if (transporterId != null) {
             transporter.setId(transporterId);
         }
 
-        return this.transportersRepository.save(transporter);
+        return this.transportersService.updateTransporter(transporter);
     }
 
     @DeleteMapping(value = "/delete/{id}")
@@ -107,8 +107,8 @@ public class TransportersApiV1Controller {
                     @ApiResponse(responseCode = "500", description = "Server Error")
             }
     )
-    public void delete(@PathVariable("id") long transporterId) {
-        this.transportersRepository.deleteById(transporterId);
+    public void deleteTransporter(@PathVariable("id") long transporterId) {
+        this.transportersService.deleteTransporter(transporterId);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
