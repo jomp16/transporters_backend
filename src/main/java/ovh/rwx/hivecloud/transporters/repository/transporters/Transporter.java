@@ -39,6 +39,8 @@ public class Transporter {
     private String cep;
     @NotEmpty(message = "Please provide a city")
     private String city;
+    @NotEmpty(message = "Please provide a state")
+    private String state;
     @NotEmpty(message = "Please provide a district")
     private String district;
     @NotEmpty(message = "Please provide a street")
