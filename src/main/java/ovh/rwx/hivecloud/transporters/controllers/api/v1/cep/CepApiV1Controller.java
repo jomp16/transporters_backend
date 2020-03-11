@@ -12,6 +12,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/api/v1/cep")
 @ResponseBody
+@CrossOrigin("*")
 public class CepApiV1Controller {
     private final CepService cepService;
 

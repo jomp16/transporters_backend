@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/transporters")
 @ResponseBody
+@CrossOrigin("*")
 public class TransportersApiV1Controller {
     private final TransportersRepository transportersRepository;
 

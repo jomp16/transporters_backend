@@ -20,6 +20,8 @@ public class Transporter {
     private Long id;
     @NotEmpty(message = "Please provide a name")
     private String name;
+    @NotEmpty(message = "Please provide a CNPJ")
+    private String cnpj;
     @NotEmpty(message = "Please provide a company name")
     @Size(min = 4)
     private String company;

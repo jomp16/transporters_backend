@@ -1,8 +1,9 @@
-DROP TABLE "public"."transporter";
+DROP TABLE IF EXISTS "public"."transporters";
 
-CREATE TABLE "public"."transporter"
+CREATE TABLE "public"."transporters"
 (
     "id"              SERIAL PRIMARY KEY,
+    "cnpj"            varchar unique not null,
     "name"            varchar        NOT NULL,
     "company"         varchar        NOT NULL,
     "email"           varchar        NOT NULL,
@@ -21,20 +22,20 @@ CREATE TABLE "public"."transporter"
     CONSTRAINT "transporters_cep_size" CHECK ( length(cep) = 9 )
 );
 
-CREATE INDEX "transporters_company" ON "public"."transporter" USING btree ("company");
-CREATE INDEX "transporters_name" ON "public"."transporter" USING btree ("name");
+CREATE INDEX "transporters_company" ON "public"."transporters" USING btree ("company");
+CREATE INDEX "transporters_name" ON "public"."transporters" USING btree ("name");
 
-COMMENT ON COLUMN "public"."transporter"."id" IS 'The unique identifier.';
-COMMENT ON COLUMN "public"."transporter"."name" IS 'The transporter name.';
-COMMENT ON COLUMN "public"."transporter"."company" IS 'The transporter company name.';
-COMMENT ON COLUMN "public"."transporter"."email" IS 'The transporter e-mail.';
-COMMENT ON COLUMN "public"."transporter"."phone_number" IS 'The transporter phone number.';
-COMMENT ON COLUMN "public"."transporter"."mobile_number" IS 'The transporter mobile number.';
-COMMENT ON COLUMN "public"."transporter"."whatsapp_number" IS 'The transporter WhatsApp number.';
-COMMENT ON COLUMN "public"."transporter"."modal" IS 'The transporter modal, can be ''R'' = Rodoviário, ''W'' = ''Waterway'' and ''A'' = ''Airway''.';
-COMMENT ON COLUMN "public"."transporter"."cep" IS 'The transporter CEP.';
-COMMENT ON COLUMN "public"."transporter"."city" IS 'The transporter city.';
-COMMENT ON COLUMN "public"."transporter"."district" IS 'The transporter district.';
-COMMENT ON COLUMN "public"."transporter"."street" IS 'The transporter street.';
-COMMENT ON COLUMN "public"."transporter"."street_number" IS 'The transporter street number.';
-COMMENT ON COLUMN "public"."transporter"."company_logo" IS 'The transporter company logo.';
+COMMENT ON COLUMN "public"."transporters"."id" IS 'The unique identifier.';
+COMMENT ON COLUMN "public"."transporters"."name" IS 'The transporters name.';
+COMMENT ON COLUMN "public"."transporters"."company" IS 'The transporters company name.';
+COMMENT ON COLUMN "public"."transporters"."email" IS 'The transporters e-mail.';
+COMMENT ON COLUMN "public"."transporters"."phone_number" IS 'The transporters phone number.';
+COMMENT ON COLUMN "public"."transporters"."mobile_number" IS 'The transporters mobile number.';
+COMMENT ON COLUMN "public"."transporters"."whatsapp_number" IS 'The transporters WhatsApp number.';
+COMMENT ON COLUMN "public"."transporters"."modal" IS 'The transporters modal, can be ''R'' = Rodoviário, ''W'' = ''Waterway'' and ''A'' = ''Airway''.';
+COMMENT ON COLUMN "public"."transporters"."cep" IS 'The transporters CEP.';
+COMMENT ON COLUMN "public"."transporters"."city" IS 'The transporters city.';
+COMMENT ON COLUMN "public"."transporters"."district" IS 'The transporters district.';
+COMMENT ON COLUMN "public"."transporters"."street" IS 'The transporters street.';
+COMMENT ON COLUMN "public"."transporters"."street_number" IS 'The transporters street number.';
+COMMENT ON COLUMN "public"."transporters"."company_logo" IS 'The transporters company logo.';
