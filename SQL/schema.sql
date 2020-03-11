@@ -12,15 +12,15 @@ CREATE TABLE "public"."transporters"
     "whatsapp_number" varchar,
     "modal"           character(1)[] NOT NULL,
     "cep"             varchar        NOT NULL,
-    "state"            varchar        NOT NULL,
+    "state"           varchar        NOT NULL,
     "city"            varchar        NOT NULL,
     "district"        varchar        NOT NULL,
     "street"          varchar        NOT NULL,
     "street_number"   varchar        NOT NULL,
-    "company_logo"    bytea          NOT NULL,
+    "company_logo"    varchar        NOT NULL,
     CONSTRAINT "transporters_modal" CHECK ( modal <@ '{R,W,A}'::character(1)[]),
     CONSTRAINT "transporters_company_size" CHECK ( length(company) >= 4 ),
-    CONSTRAINT "transporters_cep_size" CHECK ( length(cep) = 9 )
+    CONSTRAINT "transporters_cep_size" CHECK ( length(cep) = 8 )
 );
 
 CREATE INDEX "transporters_company" ON "public"."transporters" USING btree ("company");

@@ -107,8 +107,8 @@ public class TransportersApiV1Controller {
                     @ApiResponse(responseCode = "500", description = "Server Error")
             }
     )
-    public void deleteTransporter(@PathVariable("id") long transporterId) {
-        this.transportersService.deleteTransporter(transporterId);
+    public Mono<Void> deleteTransporter(@PathVariable("id") long transporterId) {
+        return this.transportersService.deleteTransporter(transporterId);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

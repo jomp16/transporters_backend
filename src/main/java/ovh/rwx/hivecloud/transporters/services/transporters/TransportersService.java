@@ -23,6 +23,10 @@ public class TransportersService {
     }
 
     public Mono<Transporter> addTransporter(Transporter transporter) {
+        if (transporter.getId() == 0) {
+            transporter.setId(null);
+        }
+
         return this.transportersRepository.save(transporter);
     }
 
@@ -30,7 +34,7 @@ public class TransportersService {
         return this.transportersRepository.save(transporter);
     }
 
-    public void deleteTransporter(long transporterId) {
-        this.transportersRepository.deleteById(transporterId);
+    public Mono<Void> deleteTransporter(long transporterId) {
+        return this.transportersRepository.deleteById(transporterId);
     }
 }

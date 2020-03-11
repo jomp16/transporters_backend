@@ -1,8 +1,9 @@
-POST http://localhost:8081/api/v1/transporter/add
+POST https://transporters.rwx.ovh/api/v1/transporters/add
 Content-Type: application/json
 
 {
   "name": "AAA - Rodoaéreo",
+  "cnpj": "89765",
   "email": "a@gmail.com",
   "company": "AAAA",
   "phoneNumber": "11",
@@ -13,6 +14,7 @@ Content-Type: application/json
   ],
   "cep": "53421-480",
   "city": "Paulista",
+  "state": "Pernambuco",
   "district": "Maranguape 2",
   "street": "Noventa e Nove",
   "streetNumber": "165",

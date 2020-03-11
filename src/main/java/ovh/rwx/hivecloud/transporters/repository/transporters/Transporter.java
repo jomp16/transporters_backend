@@ -35,7 +35,7 @@ public class Transporter {
     @NotEmpty(message = "Please provide a modal")
     private String[] modal;
     @NotEmpty(message = "Please provide a CEP")
-    @Size(min = 9, max = 9)
+    @Size(min = 8, max = 8)
     private String cep;
     @NotEmpty(message = "Please provide a city")
     private String city;
@@ -48,5 +48,5 @@ public class Transporter {
     @NotEmpty(message = "Please provide a street number")
     private String streetNumber;
     @NotEmpty(message = "Please provide a company logo")
-    private byte[] companyLogo;
+    private String companyLogo;
 }
